@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/patient")
@@ -33,8 +33,20 @@ public class PatientController {
     }
 
     @PostMapping("/add")
-    public String addPatient(@ModelAttribute("patient") Patient patient) {
+    public String addPatient(@ModelAttribute("patient") Patient patient, Model model) {
+        if (patient.getSvnr() == null || !patient.getSvnr().matches("\\d{10}")) {
+            model.addAttribute("patient", patient);
+            model.addAttribute("errorMessage", "SVNR muss genau 10 Ziffern lang sein.");
+            return "add_patient";
+        }
+
+        if (patient.getBirth() != null && patient.getBirth().isAfter(LocalDate.now())) {
+            model.addAttribute("patient", patient);
+            model.addAttribute("errorMessage", "Geburtsdatum darf nicht in der Zukunft liegen.");
+            return "add_patient";
+        }
+
         patientRepository.save(patient);
-        return  "redirect:/patient/list";
+        return "redirect:/patient/list";
     }
 }

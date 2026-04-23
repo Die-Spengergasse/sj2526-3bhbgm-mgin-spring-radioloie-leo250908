@@ -9,6 +9,8 @@
 <div class="container">
     <h1>Registrating a new patient</h1>
     <form th:action="@{/patient/add}" th:object="${patient}" method="post">
+        <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+
         first name
         <input type="text" th:field="*{firstname}" class="form-control">
 
@@ -16,7 +18,7 @@
         <input type="text" th:field="*{lastname}" class="form-control">
 
         svnr
-        <input type="text" th:field="*{svnr}" class="form-control">
+        <input type="text" th:field="*{svnr}" class="form-control" maxlength="10" pattern="\d{10}" inputmode="numeric">
 
         gender
         <input type="text" th:field="*{gender}" class="form-control">
