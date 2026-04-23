@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>List von Reservierungen</h1>
+    Für welches Gerät möchten sie alle Reservierungen sehen?
+    <form method="get" action="/reservation/list">
+        <select name="deviceId" class="form-control">
+            <option value="">-- Select a device --</option>
+            <option th:each="d : ${devices}"
+                    th:value="${d.id}"
+                    th:text="${d.geraetename}">
+            </option>
+        </select>
+        <button type="submit" class="btn btn-primary">Show reservations</button>
+    </form>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>date</th>
+            <th>time</th>
+            <th>patient</th>
+            <th>device</th>
+            <th>body region</th>
+            <th>comment</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="r : ${reservations}">
+            <td th:text="${r.date}"></td>
+            <td th:text="${r.time}"></td>
+            <td th:text="${r.patient != null ? r.patient.firstname + ' ' + r.patient.lastname : '-'}"></td>
+            <td th:text="${r.device != null ? r.device.geraetename : '-'}"></td>
+            <td th:text="${r.bodyRegion}"></td>
+            <td th:text="${r.comment}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p>
+        <a href="/reservation/add">new reservation</a>
+    </p>
+    <p>
+        <a href="/">Back to homepage</a>
+    </p>
+</div>
+</body>
+</html>

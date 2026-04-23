@@ -6,12 +6,27 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container">
-        <form th:action="@{/patient/add}" th:object="${patient}" method="post">
-            <input type="text" th:field="*{name}" class="form-control" placeholder="patient name">
-            birth date <input type="date" th:field="*{birth}" class="form-control">
-            <input type="submit" class="form-control" value="Save">
-        </form>
-    </div>
+<div class="container">
+    <h1>Registrating a new patient</h1>
+    <form th:action="@{/patient/add}" th:object="${patient}" method="post">
+        first name
+        <input type="text" th:field="*{firstname}" class="form-control">
+
+        last name
+        <input type="text" th:field="*{lastname}" class="form-control">
+
+        svnr
+        <input type="text" th:field="*{svnr}" class="form-control">
+
+        gender
+        <input type="text" th:field="*{gender}" class="form-control">
+
+        birth date
+        <input type="date" th:field="*{birth}" class="form-control">
+
+        <input type="submit" class="form-control" value="Save">
+    </form>
+
+</div>
 </body>
 </html>

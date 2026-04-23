@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Adding a reservation</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Adding a new reservation</h1>
+    <form th:action="@{/reservation/add}" th:object="${reservation}" method="post">
+        <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+
+        reservation date
+        <input type="date" th:field="*{date}" class="form-control">
+
+        reservation time
+        <input type="time" th:field="*{time}" class="form-control">
+
+        choose patient
+        <select name="patientId" class="form-control" required>
+            <option value="">-- choose patient --</option>
+            <option th:each="p : ${patients}" th:value="${p.id}" th:text="${p.firstname + ' ' + p.lastname}"></option>
+        </select>
+
+        choose device
+        <select name="deviceId" class="form-control" required>
+            <option value="">-- choose device --</option>
+            <option th:each="d : ${devices}" th:value="${d.id}" th:text="${d.geraetename}"></option>
+        </select>
+
+        choose body region
+        <select th:field="*{bodyRegion}" class="form-control">
+            <option value="head">head</option>
+            <option value="chest">chest</option>
+            <option value="abdomen">abdomen</option>
+            <option value="pelvis">pelvis</option>
+            <option value="extremities">extremities</option>
+        </select>
+
+        additional comment
+        <input type="text" th:field="*{comment}" class="form-control">
+
+        <input type="submit" class="form-control" value="Save">
+    </form>
+</div>
+
+</body>
+</html>

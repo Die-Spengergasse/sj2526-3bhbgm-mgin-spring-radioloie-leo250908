@@ -7,24 +7,33 @@
 </head>
 <body>
 <div class="container">
+    <h1>List of all patients</h1>
     <table class="table">
         <thead>
-            <tr>
-                <th>name</th>
-                <th>birth</th>
-            </tr>
+        <tr>
+            <th>first name</th>
+            <th>last name</th>
+            <th>svnr</th>
+            <th>gender</th>
+            <th>birth</th>
+        </tr>
         </thead>
         <tbody>
-            <tr th:each="p : ${patients}">
-                <td th:text="${p.name}"></td>
-                <td th:text="${p.birth}"></td>
-            </tr>
+        <tr th:each="p : ${patients}">
+            <td th:text="${p.firstname}"></td>
+            <td th:text="${p.lastname}"></td>
+            <td th:text="${p.svnr}"></td>
+            <td th:text="${p.gender}"></td>
+            <td th:text="${p.birth}"></td>
+        </tr>
         </tbody>
-
     </table>
 
     <p>
         <a href="/patient/add">new patient</a>
+    </p>
+    <p>
+        <a href="/">Back to homepage</a>
     </p>
 </div>
 </body>

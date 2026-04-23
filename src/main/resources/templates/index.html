@@ -1,16 +1,61 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/html">
+<link rel="stylesheet" href="style.css">
 <head>
     <meta charset="UTF-8">
-    <title>Greeting</title>
+    <title>Verwaltung</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+
 </head>
 <body>
+
+<style>
+    body {
+        background-color: lightcoral;
+    }
+
+    .container {
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    h1 {
+        color: beige;
+        margin-bottom: 50px;
+        font-weight: 900;
+    }
+
+    a {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #f3418c;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    a:hover {
+        background-color: lightpink;
+    }
+</style>
+
 <div class="container">
-    <h1>Hallo</h1>
-    Datum: <span th:text="${today}"></span>
+    <h1>Radiologie Institut</h1>
+    <p>Hier können Reservierungen für Geräte der Radiologie vorgenommen werden, wenn ein Patient einen Termin hat.</p>
+
+    <p>
+        Hier eine Auflistung aller Möglichkeiten:
+    </p>
     <div>
-        <a href="/patient/list">patient list</a>
+        <ul>
+            <li>Neuen Patient registrieren (falls Sie noch nicht registriert sind) --> klicken Sie bitte <a href="/patient/add">hier</a> </li>
+            <li>Neue Reservierung erfassen --> klicken Sie bitte <a href="/reservation/add">hier</a></li>
+            <li>Alle Reservierungen eines Gerätes anzeigen --> klicken Sie bitte <a href="/reservation/list">hier</a></li>
+        </ul>
+
     </div>
 </div>
 </body>
